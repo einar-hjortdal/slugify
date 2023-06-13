@@ -24,3 +24,17 @@ fn test_smart_truncate() {
 	}
 	assert slugifier.make('Sugma Willy: we are your fitness family.') == 'Sugma-Willy'
 }
+
+fn test_is_slug() {
+	assert is_slug('') == false
+	assert is_slug('-begin') == false
+	assert is_slug('_begin') == false
+	assert is_slug('end-') == false
+	assert is_slug('end_') == false
+	assert is_slug('singleword') == true
+	assert is_slug('includes_underscores') == true
+	assert is_slug('includes whitespaces') == false
+	assert is_slug('includes-dashes') == true
+	assert is_slug('Har du røykt sokka dine?') == false
+	assert is_slug('Include_Capital_Letters') == true
+}

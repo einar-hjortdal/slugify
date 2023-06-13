@@ -34,8 +34,8 @@ pub fn (opts SlugifyOptions) make_lang(not_a_slug string, lang Language) string 
 	// TODO add unidecode-like module to handle all non-ascii characters
 	// https://pypi.org/project/Unidecode/
 
-	mut re_non_ascii := regex.regex_opt(r'[\W]+') or { panic(err) }
-	s = re_non_ascii.replace(s, '-')
+	mut re_non_word := regex.regex_opt(r'\W+') or { panic(err) }
+	s = re_non_word.replace(s, '-')
 
 	s = s.trim('-_')
 
@@ -68,4 +68,19 @@ fn smart_truncate(s string, max_length int) string {
 		truncated = smart_truncate(truncated, max_length)
 	}
 	return truncated
+}
+
+// is_slug returns true if the string:
+// - only contains `\w` and `-` characters.
+// - does not begin nor end with `-` or `_`.
+pub fn is_slug(sussy string) bool {
+	if sussy == '' || sussy.starts_with('-') || sussy.starts_with('_') || sussy.ends_with('-')
+		|| sussy.ends_with('_') {
+		return false
+	}
+
+	// TODO find somebody who understands how match_string actually works.
+	mut re_slug_chars := regex.regex_opt(r'[^\w\-]+') or { panic(err) }
+	s, _ := re_slug_chars.find(sussy)
+	return s == -1
 }
