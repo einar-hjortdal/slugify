@@ -11,8 +11,7 @@ import coachonko.slugify
 
 fn main() {
   slugifier := slugify.default()
-  string := 'Slugs are NOT snails'
-  slug := slugifier.make(string) // slugs-are-not-snails
+  slug := slugifier.make('Slugs are NOT snails') // slugs-are-not-snails
 }
 ```
 
