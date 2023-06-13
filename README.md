@@ -6,6 +6,8 @@ Pull requests are welcome to add support for more languages.
 
 ## Usage
 
+Install with `v install Coachonko.slugify`
+
 ```V
 import coachonko.slugify
 
