@@ -79,8 +79,6 @@ pub fn is_slug(sussy string) bool {
 		return false
 	}
 
-	// TODO find somebody who understands how match_string actually works.
-	mut re_slug_chars := regex.regex_opt(r'[^\w\-]+') or { panic(err) }
-	s, _ := re_slug_chars.find(sussy)
-	return s == -1
+	mut re_slug_chars := regex.regex_opt(r'^[\w\-]+$') or { panic(err) }
+	return re_slug_chars.matches_string(sussy)
 }
