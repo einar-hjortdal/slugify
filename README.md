@@ -4,11 +4,11 @@ Generate slug from string
 
 ## Features
 
-- language-specific transliteration
-- custom replacement map
-- truncate slug at maximum character length
-- truncate slug at the end of a word before given maximum character length
-- transform slug to lowercase
+- language-specific transliteration toggle
+- custom replacement map support
+- truncate at maximum character length
+- truncate at the end of a word before given maximum character length
+- transform to lowercase toggle
 
 ## Usage
 
@@ -17,10 +17,8 @@ Install with `v install Coachonko.slugify`
 ```V
 import coachonko.slugify
 
-fn main() {
-  slugifier := slugify.default()
-  slug := slugifier.make('Slugs are NOT snails') // slugs-are-not-snails
-}
+slugifier := slugify.default()
+slug := slugifier.make('Slugs are NOT snails') // slugs-are-not-snails
 ```
 
 Please take a look at the test files for more information.

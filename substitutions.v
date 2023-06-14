@@ -3,6 +3,7 @@ module slugify
 // Language is the enum provided to the make_lang function.
 pub enum Language {
 	en
+	fa
 	it
 	nl
 	no
@@ -12,6 +13,7 @@ const (
 	// lang_to_subs matches a `Language` value to its substitutions map.
 	lang_to_subs = {
 		Language.en: en_sub
+		Language.fa: fa_sub
 		Language.it: it_sub
 		Language.nl: nl_sub
 		Language.no: no_sub
@@ -67,6 +69,9 @@ const (
 		'∑': 'sum'
 		'∞': 'infinity'
 		'♥': 'love'
+	}
+	fa_sub = {
+
 	}
 	it_sub = {
 		'&': 'e'

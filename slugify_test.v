@@ -27,6 +27,14 @@ fn test_smart_truncate() {
 	assert slugifier.make('Sugma Willy: we are your fitness family.') == 'Sugma-Willy'
 }
 
+fn test_skip_transliteration(){
+	slugifier := SlugifyOptions{
+		transliterate: false
+	}
+	assert slugifier.make('Har du røykt sokka dine?') == 'Har-du-r-ykt-sokka-dine'
+	assert slugifier.make_lang('Har du røykt sokka dine?', Language.no) == 'Har-du-r-ykt-sokka-dine'
+}
+
 fn test_is_slug() {
 	assert is_slug('') == false
 	assert is_slug('-begin') == false
