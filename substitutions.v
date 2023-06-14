@@ -1,5 +1,6 @@
 module slugify
 
+// Language is the enum provided to the make_lang function.
 pub enum Language {
 	en
 	it
@@ -8,21 +9,25 @@ pub enum Language {
 }
 
 const (
+	// lang_to_subs matches a `Language` value to its substitutions map.
 	lang_to_subs = {
 		Language.en: en_sub
 		Language.it: it_sub
 		Language.nl: nl_sub
 		Language.no: no_sub
 	}
+	// en_sub are the default and fallback substitution mappings.
+	// When passing a different language to `make_lang`, any mapping found in the passed language will 
+	// override the mappings in `en_sub`. Mappings that exist in `en_sub` but not in the passed language 
+	// will still apply.
 	en_sub = {
-		//
 		'&': 'and'
 		'@': 'at'
 		'%': 'percent'
 		'<': 'less'
 		'>': 'greater'
 		'|': 'or'
-		// currency
+		// TODO some currency symbols are used for more than just one currency.
 		'€': 'euro'
 		'$': 'dollar'
 		'¢': 'cent'
@@ -57,8 +62,6 @@ const (
 		'₿': 'bitcoin'
 		'؋': 'afghani'
 		'﷼': 'rial'
-		'元': 'yuan'
-		'円': 'yen'
 		//
 		'∆': 'delta'
 		'∑': 'sum'
@@ -88,4 +91,5 @@ const (
 		'Ø': 'Oe'
 		'Å': 'Aa'
 	}
+	
 )

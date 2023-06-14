@@ -1,9 +1,14 @@
 # slugify
 
-Generate slug from string. Features multi-language and custom replacement map support.
+Generate slug from string
 
-Pull requests are welcome to add support for more languages. To add subsitutions or a whole new language, 
-modify the `substitutions.v` file.
+## Features
+
+- language-specific transliteration
+- custom replacement map
+- truncate slug at maximum character length
+- truncate slug at the end of a word before given maximum character length
+- transform slug to lowercase
 
 ## Usage
 
@@ -22,7 +27,12 @@ Please take a look at the test files for more information.
 
 ## Notes
 
-`make` and `make_lang`:
-- return a string containing exclusively word characters (`\w`) and hyphens (`\-`).
-- can return an empty string if they are given exclusively non-word characters that are not contained 
-in the `substitutions.v` file.
+`make` and `make_lang` return a string that:
+- contains exclusively word characters (`\w`) and hyphens (`-`).
+- does not start nor end with hyphens (`-`) or underscores (`_`).
+- **may be empty**: if the given string contains exclusively non-word characters and those characters 
+are not contained in the `substitutions.v` file.
+
+Pull requests are welcome to add support for more languages. To add subsitutions or a whole new language, 
+please look at the [substitutions.v](./substitutions.v) file and at the [CONTRIBUTING.md](./CONTRIBUTING.md) 
+file.
