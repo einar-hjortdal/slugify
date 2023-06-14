@@ -1,0 +1,27 @@
+name: build-and-test
+
+on: [push, pull_request]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout V
+        uses: actions/checkout@v2
+        with:
+          repository: vlang/v
+
+      - name: Checkout slugify into vlib
+        uses: actions/checkout@v3
+        with:
+          path: vlib/slugify
+
+      - name: Build local v
+        run: make -j4
+
+      - name: Build
+        run: ./v -shared vlib/slugify
+
+      - name: Test
+        run: ./v test vlib/slugify
