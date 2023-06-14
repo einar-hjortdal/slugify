@@ -6,10 +6,12 @@ fn test_slugify_regexes() {
 }
 
 fn test_slugify_make_lang() {
-	slugifier := default()
+	mut slugifier := default()
 	assert slugifier.make('Har du røykt sokka dine?') == 'har-du-r-ykt-sokka-dine'
-	assert slugifier.make_lang('Har du røykt sokka dine?', Language.no) == 'har-du-roeykt-sokka-dine'
-	assert slugifier.make_lang('Un € o un $', Language.it) == "un-euro-o-un-dollaro"
+	slugifier.lang = Language.no
+	assert slugifier.make('Har du røykt sokka dine?') == 'har-du-roeykt-sokka-dine'
+	slugifier.lang = Language.it
+	assert slugifier.make('Un € o un $') == "un-euro-o-un-dollaro"
 }
 
 fn test_max_length() {
@@ -28,11 +30,12 @@ fn test_smart_truncate() {
 }
 
 fn test_skip_transliteration(){
-	slugifier := SlugifyOptions{
+	mut slugifier := SlugifyOptions{
 		transliterate: false
 	}
 	assert slugifier.make('Har du røykt sokka dine?') == 'Har-du-r-ykt-sokka-dine'
-	assert slugifier.make_lang('Har du røykt sokka dine?', Language.no) == 'Har-du-r-ykt-sokka-dine'
+	slugifier.lang = Language.no
+	assert slugifier.make('Har du røykt sokka dine?') == 'Har-du-r-ykt-sokka-dine'
 }
 
 fn test_is_slug() {

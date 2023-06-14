@@ -3,6 +3,7 @@ module slugify
 import regex
 
 pub struct SlugifyOptions {
+	mut:
 	// to_lower when true produces lowercase slugs.
 	to_lower bool
 	// max_length is the maximum number of characters allowed in the slug.
@@ -11,6 +12,8 @@ pub struct SlugifyOptions {
 	smart_truncate bool
 	// transliterate when true replaces special characters to language-specific \w approximations.
 	transliterate bool
+	// lang is the language code used to perform the language-specific transliterations.
+	lang Language
 	// custom_substitutions performs transliteration with the provided map.
 	// Done before language transliteration.
 	// Can be done when transliteration is false.
@@ -26,11 +29,8 @@ pub fn default() SlugifyOptions {
 	}
 }
 
+// make creates a slug from a given string.
 pub fn (opts SlugifyOptions) make(not_a_slug string) string {
-	return opts.make_lang(not_a_slug, Language.en)
-}
-
-pub fn (opts SlugifyOptions) make_lang(not_a_slug string, lang Language) string {
 	mut s := not_a_slug.trim_space()
 
 	if opts.custom_substitutions.len > 0 {
@@ -38,7 +38,7 @@ pub fn (opts SlugifyOptions) make_lang(not_a_slug string, lang Language) string 
 	}
 
 	if opts.transliterate {
-		s = language_sub(s, lang)
+		s = language_sub(s, opts.lang)
 	}
 
 	mut re_non_word := regex.regex_opt(r'\W+') or { panic(err) }
