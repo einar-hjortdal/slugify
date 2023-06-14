@@ -28,7 +28,6 @@ pub fn (opts SlugifyOptions) make_lang(not_a_slug string, lang Language) string 
 		s = substitute(s, opts.custom_substitutions)
 	}
 
-	// TODO handle multilanguage strings
 	s = language_sub(s, lang)
 
 	mut re_non_word := regex.regex_opt(r'\W+') or { panic(err) }

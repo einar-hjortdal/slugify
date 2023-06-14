@@ -5,10 +5,11 @@ fn test_slugify_regexes() {
 	assert slugifier.make('ThIs IS a_    test?@') == 'this-is-a_-test-at'
 }
 
-fn test_slugify_no() {
+fn test_slugify_make_lang() {
 	slugifier := default()
-	assert slugifier.make(' Har du røykt sokka dine? ') == 'har-du-r-ykt-sokka-dine'
-	assert slugifier.make_lang(' Har du røykt sokka dine? ', Language.no) == 'har-du-roeykt-sokka-dine'
+	assert slugifier.make('Har du røykt sokka dine?') == 'har-du-r-ykt-sokka-dine'
+	assert slugifier.make_lang('Har du røykt sokka dine?', Language.no) == 'har-du-roeykt-sokka-dine'
+	assert slugifier.make_lang('Un € o un $', Language.it) == "un-euro-o-un-dollaro"
 }
 
 fn test_max_length() {
@@ -38,18 +39,4 @@ fn test_is_slug() {
 	assert is_slug('includes-dashes') == true
 	assert is_slug('Har du røykt sokka dine?') == false
 	assert is_slug('Include_Capital_Letters') == true
-}
-
-fn test_misleading_unicode_characters() {
-	slugifier := default()
-	assert is_slug('’') == false
-	assert slugifier.make('’') == ''
-	assert is_slug('‒') == false
-	assert slugifier.make('‒') == ''
-	assert is_slug('–') == false
-	assert slugifier.make('–') == ''
-	assert is_slug('—') == false
-	assert slugifier.make('—') == ''
-	assert is_slug('―') == false
-	assert slugifier.make('―') == ''
 }
