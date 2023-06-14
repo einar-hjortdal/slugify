@@ -20,14 +20,14 @@ fn language_sub(not_a_slug string, lang Language) string {
 	if lang == Language.en {
 		s = substitute(s, en_sub)
 	} else {
-		mut substitutions := map[string]string{}
+		mut fallback_sub := map[string]string{}
 		for k, v in en_sub {
 			if k !in lang_to_subs[lang] {
-				substitutions[k] = v
+				fallback_sub[k] = v
 			}
 		}
 		s = substitute(s, lang_to_subs[lang])
-		s = substitute(s, substitutions)
+		s = substitute(s, fallback_sub)
 	}
 	return s
 }
