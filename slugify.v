@@ -58,6 +58,24 @@ fn substitute(s string, substitutions map[string]string) string {
 	return r
 }
 
+fn language_sub(not_a_slug string, lang Language) string {
+	mut s := not_a_slug
+
+	if lang == Language.en {
+		s = substitute(s, en_sub)
+	} else {
+		mut fallback_sub := map[string]string{}
+		for k, v in en_sub {
+			if k !in lang_to_subs[lang] {
+				fallback_sub[k] = v
+			}
+		}
+		s = substitute(s, lang_to_subs[lang])
+		s = substitute(s, fallback_sub)
+	}
+	return s
+}
+
 fn smart_truncate(s string, max_length int) string {
 	mut truncated := s.all_before_last('-')
 	if truncated.len > max_length {

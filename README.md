@@ -2,7 +2,8 @@
 
 Generate slug from string. Features multi-language and custom replacement map support.
 
-Pull requests are welcome to add support for more languages.
+Pull requests are welcome to add support for more languages. To add subsitutions or a whole new language, 
+modify the `substitutions.v` file.
 
 ## Usage
 

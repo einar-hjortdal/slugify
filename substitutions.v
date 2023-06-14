@@ -1,6 +1,19 @@
 module slugify
 
+pub enum Language {
+	en
+	it
+	nl
+	no
+}
+
 const (
+	lang_to_subs = {
+		Language.en: en_sub
+		Language.it: it_sub
+		Language.nl: nl_sub
+		Language.no: no_sub
+	}
 	en_sub = {
 		//
 		'&': 'and'
@@ -46,7 +59,7 @@ const (
 		'﷼': 'rial'
 		'元': 'yuan'
 		'円': 'yen'
-		// 
+		//
 		'∆': 'delta'
 		'∑': 'sum'
 		'∞': 'infinity'
