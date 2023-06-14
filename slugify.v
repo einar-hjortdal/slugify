@@ -28,11 +28,8 @@ pub fn (opts SlugifyOptions) make_lang(not_a_slug string, lang Language) string 
 		s = substitute(s, opts.custom_substitutions)
 	}
 
-	s = substitute(s, default_sub)
+	// TODO handle multilanguage strings
 	s = language_sub(s, lang)
-
-	// TODO add unidecode-like module to handle all non-ascii characters
-	// https://pypi.org/project/Unidecode/
 
 	mut re_non_word := regex.regex_opt(r'\W+') or { panic(err) }
 	s = re_non_word.replace(s, '-')

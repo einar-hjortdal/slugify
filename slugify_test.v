@@ -7,6 +7,7 @@ fn test_slugify_regexes() {
 
 fn test_slugify_no() {
 	slugifier := default()
+	assert slugifier.make(' Har du røykt sokka dine? ') == 'har-du-r-ykt-sokka-dine'
 	assert slugifier.make_lang(' Har du røykt sokka dine? ', Language.no) == 'har-du-roeykt-sokka-dine'
 }
 
@@ -37,4 +38,18 @@ fn test_is_slug() {
 	assert is_slug('includes-dashes') == true
 	assert is_slug('Har du røykt sokka dine?') == false
 	assert is_slug('Include_Capital_Letters') == true
+}
+
+fn test_misleading_unicode_characters() {
+	slugifier := default()
+	assert is_slug('’') == false
+	assert slugifier.make('’') == ''
+	assert is_slug('‒') == false
+	assert slugifier.make('‒') == ''
+	assert is_slug('–') == false
+	assert slugifier.make('–') == ''
+	assert is_slug('—') == false
+	assert slugifier.make('—') == ''
+	assert is_slug('―') == false
+	assert slugifier.make('―') == ''
 }
