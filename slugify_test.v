@@ -11,7 +11,7 @@ fn test_slugify_make_lang() {
 	slugifier.lang = Language.no
 	assert slugifier.make('Har du røykt sokka dine?') == 'har-du-roeykt-sokka-dine'
 	slugifier.lang = Language.it
-	assert slugifier.make('Un € o un $') == "un-euro-o-un-dollaro"
+	assert slugifier.make('Un € o un $') == 'un-eur-o-un'
 }
 
 fn test_max_length() {
@@ -29,7 +29,7 @@ fn test_smart_truncate() {
 	assert slugifier.make('Sugma Willy: we are your fitness family.') == 'Sugma-Willy'
 }
 
-fn test_skip_transliteration(){
+fn test_skip_transliteration() {
 	mut slugifier := SlugifyOptions{
 		transliterate: false
 	}

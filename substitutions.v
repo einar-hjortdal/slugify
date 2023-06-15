@@ -23,6 +23,12 @@ const (
 	// When passing a different language to `make_lang`, any mapping found in the passed language will
 	// override the mappings in `en_sub`. Mappings that exist in `en_sub` but not in the passed language
 	// will still apply.
+	//
+	// Please note that some symbols are not only used for a single meaning. For example `£` is not only 
+	// used for british pounds. In such cases it is best to use either more ambiguous replacement than 
+	// `GBP` or none at all and let the character be removed.
+	//
+	// Replacements should only contain `\w` characters and hyphens `-`, any other character will be removed.
 	en_sub = {
 		'&': 'and'
 		'@': 'at'
@@ -30,48 +36,44 @@ const (
 		'<': 'less'
 		'>': 'greater'
 		'|': 'or'
-		// TODO some currency symbols are used for more than just one currency.
-		'€': 'euro'
-		'$': 'dollar'
-		'¢': 'cent'
-		'£': 'pound'
-		'¤': 'currency'
-		'¥': 'yen'
-		'฿': 'baht'
-		'₠': 'ecu'
-		'₢': 'cruzeiro'
-		'₣': 'french franc'
-		'₤': 'lira'
-		'₥': 'mill'
-		'₦': 'naira'
-		'₧': 'peseta'
-		'₨': 'rupee'
-		'₩': 'won'
-		'₪': 'new shequel'
-		'₫': 'dong'
-		'₭': 'kip'
-		'₮': 'tugrik'
-		'₯': 'drachma'
-		'₰': 'penny'
-		'₱': 'peso'
-		'₲': 'guarani'
-		'₳': 'austral'
-		'₴': 'hryvnia'
-		'₵': 'cedi'
-		'₸': 'kazakhstani tenge'
-		'₹': 'indian rupee'
-		'₺': 'turkish lira'
-		'₽': 'russian ruble'
-		'₿': 'bitcoin'
-		'؋': 'afghani'
-		'﷼': 'rial'
-		//
+		'€': 'EUR'
+		'¢': 'C'
+		'£': 'PS'
+		'¥': 'Y'
+		'฿': 'Bh'
+		'₠': 'ECU'
+		'₢': 'Cr'
+		'₣': 'FF'
+		'₤': 'L'
+		'₥': 'mil'
+		'₦': 'N'
+		'₧': 'Pts'
+		'₨': 'Rs'
+		'₩': 'W'
+		'₪': 'NS'
+		'₫': 'D'
+		'₭': 'K'
+		'₮': 'T'
+		'₯': 'Dr'
+		'₰': 'Pf'
+		'₱': 'P'
+		'₲': 'G'
+		'₳': 'A'
+		'₴': 'UAH'
+		'₵': 'C'
+		'₸': 'T'
+		'₹': 'Rs'
+		'₺': 'L'
+		'₽': 'R'
+		'₿': 'BTC'
 		'∆': 'delta'
 		'∑': 'sum'
 		'∞': 'infinity'
-		'♥': 'love'
+		'♥': 'heart'
 	}
 	fa_sub = {
+		'ک': 'kh'
+		'ی': 'y'
 	}
 	it_sub = {
 		'&': 'e'
@@ -80,7 +82,6 @@ const (
 		'<': 'minore'
 		'>': 'maggiore'
 		'|': 'o'
-		'$': 'dollaro'
 	}
 	nl_sub = {
 		'&': 'en'

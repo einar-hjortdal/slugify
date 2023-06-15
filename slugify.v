@@ -3,7 +3,7 @@ module slugify
 import regex
 
 pub struct SlugifyOptions {
-	mut:
+mut:
 	// to_lower when true produces lowercase slugs.
 	to_lower bool
 	// max_length is the maximum number of characters allowed in the slug.
