@@ -12,10 +12,10 @@ Generate slug from string
 
 ## Usage
 
-Install with `v install Coachonko.slugify`
+Install with `v install einar-hjortdal.slugify`
 
 ```V
-import coachonko.slugify
+import einar_hjortdal.slugify
 
 slugifier := slugify.default()
 slug := slugifier.make('Slugs are NOT snails') // slugs-are-not-snails
