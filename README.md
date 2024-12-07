@@ -21,7 +21,7 @@ slugifier := slugify.default()
 slug := slugifier.make('Slugs are NOT snails') // slugs-are-not-snails
 ```
 
-Please take a look at the test files for more information.
+Please refer to [slugify_test.v](./slugify_test.v) for more information.
 
 ## Notes
 
