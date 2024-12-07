@@ -24,7 +24,7 @@ mut:
 // Feel free to build your own SlugifyOptions struct.
 pub fn default() SlugifyOptions {
 	return SlugifyOptions{
-		to_lower: true
+		to_lower:      true
 		transliterate: true
 	}
 }

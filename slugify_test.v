@@ -25,7 +25,7 @@ fn test_max_length() {
 
 fn test_smart_truncate() {
 	slugifier := SlugifyOptions{
-		max_length: 12
+		max_length:     12
 		smart_truncate: true
 	}
 	assert slugifier.make('Sugma Willy: we are your fitness family.') == 'Sugma-Willy'
