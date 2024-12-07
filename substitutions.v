@@ -8,6 +8,7 @@ pub enum Language {
 	it
 	nl
 	no
+	ru
 }
 
 const (
@@ -18,6 +19,7 @@ const (
 		Language.it: it_sub
 		Language.nl: nl_sub
 		Language.no: no_sub
+		Language.ru: ru_sub
 	}
 	// en_sub are the default and fallback substitution mappings.
 	// When passing a different language to `make_lang`, any mapping found in the passed language will
@@ -96,5 +98,52 @@ const (
 		'Æ': 'Ae'
 		'Ø': 'Oe'
 		'Å': 'Aa'
+	}
+	ru_sub = {
+		'а': 'a'
+		'б': 'b'
+		'в': 'v'
+		'г': 'g'
+		'д': 'd'
+		'е': 'e'
+		'ё': 'yo'
+		'ж': 'zh'
+		'з': 'z'
+		'дж': 'j'
+		'и': 'i'
+		'й': 'y'
+		'к': 'k'
+		'л': 'l'
+		'м': 'm'
+		'н': 'n'
+		'о': 'o'
+		'п': 'p'
+		'р': 'r'
+		'с': 's'
+		'т': 't'
+		'у': 'u'
+		'ф': 'f'
+		'х': 'h'
+		'ц': 'ts'
+		'ч': 'ch'
+		'ш': 'sh'
+		'щ': 'sch'
+		'ъ': ''
+		'ы': 'i'
+		'ь': ''
+		'э': 'e'
+		'ю': 'yu'
+		'я': 'ya'
+		'%': 'procent'
+		'♥': 'serdtse'
+		'&': 'i'
+		'@': 'sobaka'
+		'#': 'reshyotka'
+		'=': 'ravno'
+		'~': 'tilda'
+		'<': 'menshe'
+		'>': 'bolshe'
+		'|': 'ili'
+		'∞': 'beskonechnost'
 	}
 )

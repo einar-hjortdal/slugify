@@ -12,6 +12,8 @@ fn test_slugify_make_lang() {
 	assert slugifier.make('Har du røykt sokka dine?') == 'har-du-roeykt-sokka-dine'
 	slugifier.lang = Language.it
 	assert slugifier.make('Un € o un $') == 'un-eur-o-un'
+	slugifier.lang = Language.ru
+	assert slugifier.make('любя съешь щипцы вздохнёт мэр кайф жгуч') == 'lyubya-sesh-schiptsi-vzdohnyot-mer-kayf-zhguch'
 }
 
 fn test_max_length() {
