@@ -8,11 +8,11 @@ fn test_slugify_regexes() {
 fn test_slugify_make_lang() {
 	mut slugifier := default()
 	assert slugifier.make('Har du røykt sokka dine?') == 'har-du-r-ykt-sokka-dine'
-	slugifier.lang = Language.no
+	slugifier.lang = 'no'
 	assert slugifier.make('Har du røykt sokka dine?') == 'har-du-roeykt-sokka-dine'
-	slugifier.lang = Language.it
+	slugifier.lang = 'it'
 	assert slugifier.make('Un € o un $') == 'un-eur-o-un'
-	slugifier.lang = Language.ru
+	slugifier.lang = 'ru'
 	assert slugifier.make('любя съешь щипцы вздохнёт мэр кайф жгуч') == 'lyubya-sesh-schiptsi-vzdohnyot-mer-kayf-zhguch'
 }
 
@@ -36,7 +36,7 @@ fn test_skip_transliteration() {
 		transliterate: false
 	}
 	assert slugifier.make('Har du røykt sokka dine?') == 'Har-du-r-ykt-sokka-dine'
-	slugifier.lang = Language.no
+	slugifier.lang = 'no'
 	assert slugifier.make('Har du røykt sokka dine?') == 'Har-du-r-ykt-sokka-dine'
 }
 

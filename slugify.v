@@ -13,7 +13,7 @@ mut:
 	// transliterate when true replaces special characters to language-specific \w approximations.
 	transliterate bool
 	// lang is the language code used to perform the language-specific transliterations.
-	lang Language
+	lang string
 	// custom_substitutions performs transliteration with the provided map.
 	// Done before language transliteration.
 	// Can be done when transliteration is false.
@@ -26,7 +26,42 @@ pub fn default() SlugifyOptions {
 	return SlugifyOptions{
 		to_lower:      true
 		transliterate: true
+		lang:          'en'
 	}
+}
+
+fn language_sub(not_a_slug string, lang string) string {
+	mut s := not_a_slug
+
+	if lang == 'en' {
+		s = substitute(s, substitutions_en)
+	} else {
+		mut fallback_sub := map[string]string{}
+		for k, v in substitutions_en {
+			if k !in language_to_substitutions[lang] {
+				fallback_sub[k] = v
+			}
+		}
+		s = substitute(s, language_to_substitutions[lang])
+		s = substitute(s, fallback_sub)
+	}
+	return s
+}
+
+fn substitute(s string, substitutions map[string]string) string {
+	mut r := s
+	for k, v in substitutions {
+		r = r.replace(k, v)
+	}
+	return r
+}
+
+fn smart_truncate(s string, max_length int) string {
+	mut truncated := s.all_before_last('-')
+	if truncated.len > max_length {
+		truncated = smart_truncate(truncated, max_length)
+	}
+	return truncated
 }
 
 // make creates a slug from a given string.
@@ -59,40 +94,6 @@ pub fn (opts SlugifyOptions) make(not_a_slug string) string {
 	}
 
 	return s
-}
-
-fn substitute(s string, substitutions map[string]string) string {
-	mut r := s
-	for k, v in substitutions {
-		r = r.replace(k, v)
-	}
-	return r
-}
-
-fn language_sub(not_a_slug string, lang Language) string {
-	mut s := not_a_slug
-
-	if lang == Language.en {
-		s = substitute(s, en_sub)
-	} else {
-		mut fallback_sub := map[string]string{}
-		for k, v in en_sub {
-			if k !in lang_to_subs[lang] {
-				fallback_sub[k] = v
-			}
-		}
-		s = substitute(s, lang_to_subs[lang])
-		s = substitute(s, fallback_sub)
-	}
-	return s
-}
-
-fn smart_truncate(s string, max_length int) string {
-	mut truncated := s.all_before_last('-')
-	if truncated.len > max_length {
-		truncated = smart_truncate(truncated, max_length)
-	}
-	return truncated
 }
 
 // is_slug returns true if the string:
